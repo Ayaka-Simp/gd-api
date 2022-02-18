@@ -1,6 +1,6 @@
 # gdbrowser-wrapper
 
-A basic wrapper for the gdbrowser api.
+A basic wrapper for the [gdbrowser api](https://gdbrowser.com/api).
 
 ## Installation
 
