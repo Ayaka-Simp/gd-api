@@ -1,0 +1,46 @@
+{
+  "name": "gd-api",
+  "version": "1.0.0",
+  "description": "Wrapper for GDColon's gdbrowser API",
+  "main": "index",
+  "types": "lib/index",
+  "files": [
+    "lib/**/*",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node src/test/index.test.ts",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veemo-9785/gdapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veemo-9785/gdapi/issues"
+  },
+  "homepage": "https://github.com/Veemo-9785/gdapi#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.18",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.5.12",
+    "node-fetch": "^2.6.7"
+  }
+}
