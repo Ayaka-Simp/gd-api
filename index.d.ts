@@ -76,9 +76,9 @@ export type LevelData = {
   songID: string;
 };
 
-type Length = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'XL';
+export type Length = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'XL';
 
-type DifficultyFace =
+export type DifficultyFace =
   | 'auto-epic'
   | 'auto-featured'
   | 'auto'
@@ -120,7 +120,7 @@ type DifficultyFace =
   | 'unrated';
 
 export class Level {
-  private rawLevelData: LevelData;
+  rawLevelData: LevelData;
   id: string;
   name: string;
   description: string;
@@ -158,51 +158,109 @@ export class Level {
   songSize: string;
   songID: string;
 
-  constructor(level: LevelData) {
-    this.rawLevelData = level;
-    this.id = level.id;
-    this.name = level.name;
-    this.description = level.description;
-    this.author = level.author;
-    this.playerID = level.playerID;
-    this.accountID = level.accountID;
-    this.difficulty = level.difficulty;
-    this.downloads = level.downloads;
-    this.likes = level.likes;
-    this.disliked = level.disliked;
-    this.length = level.length;
-    this.stars = level.stars;
-    this.orbs = level.orbs;
-    this.diamonds = level.diamonds;
-    this.featured = level.featured;
-    this.epic = level.epic;
-    this.gameVersion = level.gameVersion;
-    this.editorTime = level.editorTime;
-    this.totalEditorTime = level.totalEditorTime;
-    this.version = level.version;
-    this.copiedID = level.copiedID;
-    this.twoPlayer = level.twoPlayer;
-    this.officialSong = level.officialSong;
-    this.customSong = level.customSong;
-    this.coins = level.coins;
-    this.verifiedCoins = level.verifiedCoins;
-    this.starsRequested = level.starsRequested;
-    this.ldm = level.ldm;
-    this.objects = level.objects;
-    this.large = level.large;
-    this.cp = level.cp;
-    this.difficultyFace = level.difficultyFace;
-    this.songName = level.songName;
-    this.songAuthor = level.songAuthor;
-    this.songSize = level.songSize;
-    this.songID = level.songID;
-  }
+  constructor(level: LevelData): void
+  getRawLevelData(): LevelData
+}
 
-  getRawLevelData(): LevelData {
-    return this.rawLevelData;
-  }
+export interface ProfileData {
+  username: string;
+  playerID: string;
+  accountID: string;
+  rank: number;
+  stars: number;
+  diamonds: number;
+  coins: number;
+  userCoins: number;
+  demons: number;
+  cp: number;
+  icon: number;
+  friendRequests: boolean;
+  messages: 'all' | 'friends' | 'off';
+  commentHistory: 'all' | 'friends' | 'off';
+  moderator: 0 | 1 | 2;
+  youtube: string | null;
+  twitter: string | null;
+  twitch: string | null;
+  ship: number;
+  ball: number;
+  ufo: number;
+  wave: number;
+  robot: number;
+  spider: number;
+  col1: number;
+  col2: number;
+  deathEffect: number;
+  glow: boolean;
+  col1RGB: {
+    r: number;
+    g: number;
+    b: number;
+    val: string;
+  };
+  col2RGB: {
+    r: number;
+    g: number;
+    b: number;
+    val: string;
+  };
+}
 
-  getDifficultyFaceUrl(): string {
-    return `https://gdbrowser.com/assets/difficulties/${this.difficultyFace}.png`
-  }
+export class Profile {
+  private rawJsonData: ProfileData;
+  username: string;
+  playerID: string;
+  accountID: string;
+  rank: number;
+  stars: number;
+  diamonds: number;
+  coins: number;
+  userCoins: number;
+  demons: number;
+  cp: number;
+  icon: number;
+  friendRequests: boolean;
+  messages: 'all' | 'friends' | 'off';
+  commentHistory: 'all' | 'friends' | 'off';
+  moderator: 0 | 1 | 2;
+  youtube: string | null;
+  twitter: string | null;
+  twitch: string | null;
+  ship: number;
+  ball: number;
+  ufo: number;
+  wave: number;
+  robot: number;
+  spider: number;
+  col1: number;
+  col2: number;
+  deathEffect: number;
+  glow: boolean;
+  col1RGB: {
+    r: number;
+    g: number;
+    b: number;
+    val: string;
+  };
+  col2RGB: {
+    r: number;
+    g: number;
+    b: number;
+    val: string;
+  };
+
+  constructor(jsonData: ProfileData);
+  getRawJsonData(): ProfileData;
+  getRawProfileData(): ProfileData;
+}
+
+declare async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]>
+
+declare async function getLevelById(id: string | number): Promise<Level>
+
+export class LevelNotFound extends Error {
+    constructor(message: string): void;
+}
+
+export class ProfileNotFound extends Error {
+    constructor(message: string): void;
 }

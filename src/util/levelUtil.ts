@@ -30,10 +30,14 @@ interface SearchFilters {
 }
 import { URL, URLSearchParams } from 'url';
 import { Level } from '../classes/level';
+import LevelNotFound from '../errors/levelNotFoundError';
 
-async function getLevelById(id: string | number): Promise<Level> {
+async function getLevelById(id: string | number): Promise<Level | undefined> {
   const res = await fetch(`https://gdbrowser.com/api/level/${id}`);
   const json = await res.json();
+  if (json.toString() == "-1") {
+    throw new LevelNotFound(`Level with id ${id} was not found`);
+  }
   return new Level(json);
 }
 
@@ -45,6 +49,9 @@ async function searchLevels(query: string, filters?: SearchFilters, page = 1): P
   url.search = params.toString();
   const res = await fetch(url.toString());
   const json = await res.json();
+  if (json.toString() == "-1") {
+    throw new LevelNotFound(`Search with query ${query} yielded no results.`);
+  }
   if (filters?.count) {
     for (let i = 0; i < json.length; i++) {
       levels.push(new Level(json[i]));
@@ -54,6 +61,7 @@ async function searchLevels(query: string, filters?: SearchFilters, page = 1): P
       levels.push(new Level(json[i]));
     }
   }
+
   return levels;
 }
 
