@@ -32,7 +32,7 @@ import { URL, URLSearchParams } from 'url';
 import { Level } from '../classes/level';
 import LevelNotFound from '../errors/levelNotFoundError';
 
-async function getLevelById(id: string | number): Promise<Level | undefined> {
+async function getLevelById(id: string | number): Promise<Level> {
   const res = await fetch(`https://gdbrowser.com/api/level/${id}`);
   const json = await res.json();
   if (json.toString() == "-1") {

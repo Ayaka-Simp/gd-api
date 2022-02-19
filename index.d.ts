@@ -253,9 +253,9 @@ export class Profile {
   getRawProfileData(): ProfileData;
 }
 
-declare async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]>
+export async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]>
 
-declare async function getLevelById(id: string | number): Promise<Level>
+export async function getLevelById(id: string | number): Promise<Level>
 
 export class LevelNotFound extends Error {
     constructor(message: string): void;
