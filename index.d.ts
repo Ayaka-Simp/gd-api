@@ -1,3 +1,32 @@
+interface SearchFilters {
+  count?: number;
+  difficulty?: -1 | -2 | -3 | 1 | 2 | 3 | 4 | 5;
+  demonFilter?: 1 | 2 | 3 | 4 | 5;
+  gauntlet?: number;
+  length?: 0 | 1 | 2 | 3 | 4;
+  songID?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21;
+  type?:
+    | 'mostdownloaded'
+    | 'mostliked'
+    | 'trending'
+    | 'recent'
+    | 'awarded'
+    | 'featured'
+    | 'magic'
+    | 'halloffame'
+    | 'gdworld';
+  list?: string;
+  featured?: string;
+  original?: string;
+  twoPlayer?: string;
+  coins?: string;
+  epic?: string;
+  starred?: string;
+  noStar?: string;
+  customSong?: string;
+  user?: string;
+}
+
 export type LevelData = {
   id: string;
   name: string;
@@ -158,7 +187,7 @@ export class Level {
   songSize: string;
   songID: string;
 
-  constructor(level: LevelData): void
+  constructor(level: LevelData)
   getRawLevelData(): LevelData
 }
 
@@ -253,14 +282,14 @@ export class Profile {
   getRawProfileData(): ProfileData;
 }
 
-export async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]>
+export function searchLevels(query: string, filters?: SearchFilters, page?: number): Promise<Level[]>
 
-export async function getLevelById(id: string | number): Promise<Level>
+export function getLevelById(id: string | number): Promise<Level>
 
 export class LevelNotFound extends Error {
-    constructor(message: string): void;
+    constructor(message: string)
 }
 
 export class ProfileNotFound extends Error {
-    constructor(message: string): void;
+    constructor(message: string)
 }
