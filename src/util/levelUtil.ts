@@ -32,7 +32,7 @@ import { URL, URLSearchParams } from 'url';
 import { Level } from '../classes/level';
 import LevelNotFound from '../errors/levelNotFoundError';
 
-async function getLevelById(id: string | number): Promise<Level> {
+export async function getLevelById(id: string | number): Promise<Level> {
   const res = await fetch(`https://gdbrowser.com/api/level/${id}`);
   const json = await res.json();
   if (json.toString() == "-1") {
@@ -41,7 +41,7 @@ async function getLevelById(id: string | number): Promise<Level> {
   return new Level(json);
 }
 
-async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]> {
+export async function searchLevels(query: string, filters?: SearchFilters, page = 1): Promise<Level[]> {
   const levels: Level[] = [];
   const url = new URL(`https://gdbrowser.com/api/search/${query}`);
   const params = new URLSearchParams(filters ? (filters as string) : ({} as string));
@@ -64,5 +64,3 @@ async function searchLevels(query: string, filters?: SearchFilters, page = 1): P
 
   return levels;
 }
-
-export { getLevelById, searchLevels };

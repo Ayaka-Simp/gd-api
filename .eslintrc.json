@@ -18,5 +18,5 @@
     ],
     "rules": {
     },
-    "ignorePatterns": ["lib/**/*", "node_modules/**/*", "/*.js"]
+    "ignorePatterns": ["lib/**/*", "node_modules/**/*", "/*.js", "**/test/*"]
 }
