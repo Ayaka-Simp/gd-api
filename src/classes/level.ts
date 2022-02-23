@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 export type LevelData = {
   id: string;
   name: string;
@@ -119,6 +121,7 @@ type DifficultyFace =
   | 'unrated-featured'
   | 'unrated';
 
+
 export class Level {
   private rawLevelData: LevelData;
   id: string;
@@ -204,5 +207,90 @@ export class Level {
 
   getDifficultyFaceUrl(): string {
     return `https://gdbrowser.com/assets/difficulties/${this.difficultyFace}.png`
+  }
+
+  async getLeaderboard(): Promise<LevelLeaderboardItem[]> {
+    
+    const res = await fetch(`https://gdbrowser.com/api/leaderboardLevel/${this.id}`);
+    const json = await res.json();
+
+    const leaderboard: LevelLeaderboardItem[] = [];
+
+    for (let i = 0; i < json.length; i++) {
+        leaderboard.push(new LevelLeaderboardItem(json[i]));
+    }
+
+    return leaderboard
+  }
+}
+
+
+
+export interface LevelleaderboardData {
+  rank: number,
+  username: string,
+  playerID: string,
+  accountID: string,
+  percent: number,
+  coins: number,
+  date: string,
+  icon: {
+    "form": string,
+    "icon": number,
+    "col1": number,
+    "col2": number,
+    "glow": boolean,
+    "col1RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    },
+    "col2RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    }
+  }
+}
+
+class LevelLeaderboardItem {
+  rank: number;
+  username: string;
+  playerID: string;
+  accountID: string;
+  percent: number;
+  coins: number;
+  date: string;
+  icon: {
+    "form": string,
+    "icon": number,
+    "col1": number,
+    "col2": number,
+    "glow": boolean,
+    "col1RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    },
+    "col2RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    }
+  }
+
+  constructor(leaderboardData: LevelleaderboardData){
+    this.rank = leaderboardData.rank;
+    this.username = leaderboardData.username;
+    this.playerID = leaderboardData.playerID;
+    this.accountID = leaderboardData.accountID;
+    this.percent = leaderboardData.percent;
+    this.coins = leaderboardData.coins;
+    this.date = leaderboardData.date;
+    this.icon = leaderboardData.icon;
   }
 }
