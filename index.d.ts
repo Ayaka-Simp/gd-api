@@ -293,3 +293,44 @@ export class LevelNotFound extends Error {
 export class ProfileNotFound extends Error {
     constructor(message: string)
 }
+
+export interface LeaderBoardItemData {
+    rank: number,
+    username: string,
+    playerID: string,
+    stars: number,
+    demons: number,
+    cp: number,
+    coins: number,
+    userCoins: number,
+    diamonds: number,
+    icon: number,
+}
+
+export class LeaderBoardItem {
+    rank: number;
+    username: string;
+    playerID: string;
+    stars: number;
+    demons: number;
+    cp: number;
+    coins: number;
+    userCoins: number;
+    diamonds: number;
+    icon: number;
+
+    constructor (jsonData: LeaderBoardItemData)
+}
+
+export type AccurateLeaderboardType = "stars" | "coins" | "diamonds" | "demons";
+
+export interface AccurateLeaderboardSearchFilters {
+    type?: AccurateLeaderboardType,
+    mod?: boolean,
+}
+
+export function getLeaderboard(count: number): Promise<LeaderBoardItem[]>
+
+export function getCreatorLeaderboard(count: number): Promise<LeaderBoardItem[]>
+
+export function getAccurateLeaderboard(filters?: AccurateLeaderboardSearchFilters): Promise<LeaderBoardItem[]>
