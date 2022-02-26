@@ -187,8 +187,69 @@ export class Level {
   songSize: string;
   songID: string;
 
-  constructor(level: LevelData)
-  getRawLevelData(): LevelData
+  constructor(level: LevelData);
+  getRawLevelData(): LevelData;
+  getLeaderboard(): Promise<LevelLeaderboardItem[]>
+}
+
+export interface LevelleaderboardData {
+  rank: number,
+  username: string,
+  playerID: string,
+  accountID: string,
+  percent: number,
+  coins: number,
+  date: string,
+  icon: {
+    "form": string,
+    "icon": number,
+    "col1": number,
+    "col2": number,
+    "glow": boolean,
+    "col1RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    },
+    "col2RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    }
+  }
+}
+
+export class LevelLeaderboardItem {
+  rank: number;
+  username: string;
+  playerID: string;
+  accountID: string;
+  percent: number;
+  coins: number;
+  date: string;
+  icon: {
+    "form": string,
+    "icon": number,
+    "col1": number,
+    "col2": number,
+    "glow": boolean,
+    "col1RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    },
+    "col2RGB": {
+      "r": number,
+      "g": number,
+      "b": number,
+      "val": string
+    }
+  }
+
+  constructor(leaderboardData: LevelleaderboardData);
 }
 
 export interface ProfileData {

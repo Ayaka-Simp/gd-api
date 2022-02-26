@@ -283,7 +283,7 @@ class LevelLeaderboardItem {
     }
   }
 
-  constructor(leaderboardData: LevelleaderboardData){
+  constructor(leaderboardData: LevelleaderboardData) {
     this.rank = leaderboardData.rank;
     this.username = leaderboardData.username;
     this.playerID = leaderboardData.playerID;
