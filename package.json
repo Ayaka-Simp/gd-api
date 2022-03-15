@@ -3,21 +3,20 @@
   "version": "1.0.0",
   "description": "Wrapper for GDColon's gdbrowser API",
   "main": "index.js",
-  "types": "index.d.ts",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
-    "index.js",
-    "index.d.ts"
+    "index.js"
   ],
   "scripts": {
     "test": "ts-node src/test/index.test.ts",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "prepare": "pnpm build",
+    "prepublishOnly": "npm test && pnpm lint",
+    "preversion": "pnpm lint",
+    "version": "pnpm format && git add -A src",
     "postversion": "git push && git push --tags"
   },
   "repository": {
