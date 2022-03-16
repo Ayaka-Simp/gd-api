@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Veemo-9785/gdapi.git"
+    "url": "git+https://github.com/Veemo-9785/gd-api.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Veemo-9785/gdapi/issues"
+    "url": "https://github.com/Veemo-9785/gd-api/issues"
   },
-  "homepage": "https://github.com/Veemo-9785/gdapi#readme",
+  "homepage": "https://github.com/Veemo-9785/gd-api#readme",
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.18",

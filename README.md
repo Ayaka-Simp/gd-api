@@ -1,5 +1,7 @@
 # gdbrowser-wrapper
 
+![npm](https://img.shields.io/npm/dw/gd-api)
+
 A basic wrapper for the [gdbrowser api](https://gdbrowser.com/api).
 
 ## Installation
