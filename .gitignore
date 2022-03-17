@@ -1,5 +1,5 @@
 node_modules/
-src/test
-/lib
+src/test/
+/lib/
 pnpm-lock.yaml
 .DS_Store
