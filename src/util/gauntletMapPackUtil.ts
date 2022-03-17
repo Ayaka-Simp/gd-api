@@ -1,4 +1,4 @@
-import { GauntletOrMapPackItem, IGauntletOrMapPack } from '../classes';
+import { GauntletOrMapPackItem, IGauntletOrMapPack } from '../classes/gauntletMapPack';
 import fetch from 'node-fetch';
 
 export async function getMapPack(query: string): Promise<GauntletOrMapPackItem> {

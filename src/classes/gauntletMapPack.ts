@@ -1,5 +1,5 @@
-import { Level } from '.';
-import { getLevelById } from '../util';
+import { Level } from './level';
+import { getLevelById } from '../util/levelUtil';
 
 export type DifficultyString = 'easy' | 'medium' | 'hard' | 'harder' | 'insane' | 'demon';
 
